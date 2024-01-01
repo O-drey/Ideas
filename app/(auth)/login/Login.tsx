@@ -2,20 +2,21 @@ import { useEffect, useState } from "react";
 import { View, TextInput, Text, Button, StyleSheet, Alert } from "react-native";
 // import { useAuth } from "../../api/fetchs/auth";
 import { Link } from "expo-router";
-import { COLORS } from "../../constants";
+import { THEME } from "../../constants";
 // import {secondary_button} from "../../libs/ui/index"
+
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => {}, [username, password]);
-  // const handleLogin = async () => {
-  //   // const { login } = useAuth();
-  //   // const data = await login(username, password);
-  //   // console.log("login data :", data);
-  //   console.log("connectée");
-  //   // return data;
-  // };
+  // useEffect(() => {}, [username, password]);
+  const handleLogin = async () => {
+    // const { login } = useAuth();
+    // const data = await login(username, password);
+    // console.log("login data :", data);
+    console.log("connectée");
+    // return data;
+  };
 
   return (
     <View style={styles.form}>
@@ -50,7 +51,7 @@ export default function Login() {
         />
       </View>
       <View style={{ marginTop: 16 }}>
-        <Button onPress={() => console.log("conecté")} title="Connexion" />
+        <Button onPress={handleLogin} title="Connexion" />
         <Link href="/signup" style={styles.secondary_button}>
           Créer mon compte
         </Link>
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
     paddingVertical: 16,
     paddingHorizontal: 2,
-    backgroundColor: COLORS.primary400,
+    backgroundColor: THEME.COLORS.primary400,
     borderRadius: 4,
     textAlign: "center",
     color: "#FFF",

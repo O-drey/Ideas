@@ -15,7 +15,7 @@ export interface Users {
   // jobSearch?: "1er emploi" | "stage" | "alternance" | "école" | null;
   // avatar?: string | null; //ajouter image par défaut
   bio?: string;
-  role: "ADMIN" | "USER";
+  // role: "ADMIN" | "USER";
 }
 
 // export type Admin = Omit<Users, "jobSearch" | "status" | "age" | "pseudo">;

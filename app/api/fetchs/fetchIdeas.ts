@@ -2,41 +2,49 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { httpClient } from "../httpClient";
 import type { Ideas } from "../../libs/interfaces/ideas";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const fetchIdeas = () => {
   const [datas, setData] = useState<Ideas | Ideas[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
-  const fetchDatas = async () => {
-    setIsLoading(true);
+
+  const fetchDatas = () => {
     try {
       const list = async () => {
-        const { data } = await httpClient.get<Ideas[]>("/subjects");
-        setData(data);
-        setIsLoading(false);
-        return data;
+        try {
+          const { data } = await httpClient.get<Ideas[]>("/subjects");
+          setData(data);
+          return data;
+        } catch (error) {
+          setError(error as Error);
+          throw new Error((error as Error).message);
+        }
       };
 
       const retrieve = async (id: string) => {
-        const { data } = await httpClient.get<Ideas>(`/subjects/${id}`);
-        setData(data);
-        setIsLoading(false);
-        return data;
+        try {
+          const { data } = await httpClient.get<Ideas>(`/subjects/${id}`);
+          setData(data);
+          return data;
+        } catch (error) {
+          setError(error as Error);
+          throw new Error((error as Error).message);
+        }
       };
 
       const create = async (datas: Omit<Ideas, "id">) => {
-        const token = localStorage.getItem("token");
+        const token = await AsyncStorage.getItem("token");
         try {
           if (token) {
             const { data } = await httpClient.post<Ideas>("/subjects", datas);
 
             setData(data);
-            setIsLoading(false);
 
             return data;
           }
           return axios.HttpStatusCode.Forbidden;
         } catch (error) {
+          setError(error as Error);
           throw new Error((error as Error).message);
         }
       };
@@ -44,7 +52,7 @@ export const fetchIdeas = () => {
         id: Ideas["id"],
         datas: Omit<Ideas, "id" | "by_userId">
       ) => {
-        const token = localStorage.getItem("token");
+        const token = await AsyncStorage.getItem("token");
         try {
           if (token) {
             const { data } = await httpClient.patch<Ideas>(
@@ -53,27 +61,27 @@ export const fetchIdeas = () => {
             );
 
             setData(data);
-            setIsLoading(false);
 
             return data;
           }
           return axios.HttpStatusCode.Forbidden;
         } catch (error) {
+          setError(error as Error);
           throw new Error((error as Error).message);
         }
       };
       const del = async (id: Ideas["id"]) => {
-        const token = localStorage.getItem("token");
+        const token = await AsyncStorage.getItem("token");
         try {
           if (!token) axios.HttpStatusCode.Forbidden;
 
           const { data } = await httpClient.patch<Ideas>(`/subjects/${id}`);
 
           setData(data);
-          setIsLoading(false);
 
           return data;
         } catch (error) {
+          setError(error as Error);
           throw new Error((error as Error).message);
         }
       };
@@ -85,5 +93,5 @@ export const fetchIdeas = () => {
     }
   };
 
-  return { datas, isLoading, error, fetchDatas };
+  return { datas, error, fetchDatas };
 };

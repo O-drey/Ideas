@@ -1,18 +1,25 @@
-import { View, Image, StyleSheet, Text } from "react-native";
+import { View, Image, StyleSheet, Text, FlatList } from "react-native";
 
 import { Chips } from "./Chips";
 import picture from "../../assets/images/botanical_bg.jpg";
 import { formatTags } from "../utils/formatTags";
 import { Categories } from "../libs/interfaces/categories";
+import { Users } from "../libs/interfaces/users";
 
 export const Cards = ({
   title,
+  subtitle,
   content,
   tags,
+  author,
+  minimize,
 }: {
   title: string;
+  subtitle?: string | null;
   content: string;
-  tags: Categories["value"][];
+  tags?: Categories["value"][];
+  author?: Users["id"];
+  minimize?: boolean;
 }) => {
   return (
     <View style={styles.container}>
@@ -23,11 +30,19 @@ export const Cards = ({
         <Text style={{ fontSize: 20, fontWeight: "600", marginBottom: 2 }}>
           {title}
         </Text>
-        <Text style={{ fontSize: 15, marginBottom: 8 }}>{content}</Text>
-        <View style={styles.tags}>
-          {tags.map((tag, index) => (
-            <Chips key={index} name={formatTags(tag)} />
-          ))}
+        <Text
+          style={{ fontSize: 15, marginBottom: 8 }}
+          numberOfLines={minimize ? 1 : undefined}
+        >
+          {content}
+        </Text>
+        <View>
+          <FlatList
+            data={tags}
+            keyExtractor={(tag) => tag}
+            style={styles.tags}
+            renderItem={(tag) => <Chips name={formatTags(tag.item)} />}
+          />
         </View>
       </View>
     </View>
@@ -48,5 +63,6 @@ const styles = StyleSheet.create({
   tags: {
     display: "flex",
     alignItems: "flex-end",
+    justifyContent: "space-between",
   },
 });

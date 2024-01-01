@@ -6,22 +6,32 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const fetchUsers = () => {
   const [datas, setData] = useState<Users | Users[]>([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
 
-  const fetchDatas = async () => {
+  const fetchDatas = () => {
     try {
       const list = async () => {
-        const { data } = await httpClient.get<Users[]>("/users");
-        setData(data);
+        try {
+          const { data } = await httpClient.get<Users[]>("/users");
+          setData(data);
 
-        return data;
+          return data;
+        } catch (error) {
+          setError(error as Error);
+          throw new Error((error as Error).message);
+        }
       };
 
       const retrieve = async (id: string) => {
-        const { data } = await httpClient.get<Users>(`/users/${id}`);
-        setData(data);
+        try {
+          const { data } = await httpClient.get<Users>(`/users/${id}`);
+          setData(data);
 
-        return data;
+          return data;
+        } catch (error) {
+          setError(error as Error);
+          throw new Error((error as Error).message);
+        }
       };
 
       const update = async (id: Users["id"], datas: Omit<Users, "id">) => {
@@ -30,11 +40,11 @@ export const fetchUsers = () => {
           if (!token) axios.HttpStatusCode.Forbidden;
 
           const { data } = await httpClient.patch<Users>(`/users/${id}`, datas);
-
           setData(data);
 
           return data;
         } catch (error) {
+          setError(error as Error);
           throw new Error((error as Error).message);
         }
       };
@@ -44,19 +54,18 @@ export const fetchUsers = () => {
           if (!token) axios.HttpStatusCode.Forbidden;
 
           const { data } = await httpClient.patch<Users>(`/users/${id}`);
-
           setData(data);
 
           return data;
         } catch (error) {
+          setError(error as Error);
           throw new Error((error as Error).message);
         }
       };
       return { list, retrieve, update, del };
-    } catch {
-      setError(error);
+    } catch (error) {
+      setError(error as Error);
       throw new Error((error as Error).message);
-    } finally {
     }
   };
 

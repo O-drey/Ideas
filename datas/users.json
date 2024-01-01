@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": "",
+      "firstname": "",
+      "lastname": "",
+      "pronouns": "iel",
+      "bio": "",
+      "email": "",
+      "username": "",
+      "password": "",
+      "ideas": ["", "", ""],
+      "created_at": 0,
+      "updated_at": null,
+      "deleted_at": null
+    }
+  ]
+}

@@ -19,4 +19,22 @@ const COLORS = {
   gray300: "#111111",
 };
 
-export default COLORS;
+const FONTS = {
+  h1: {
+    fontSize: 36,
+    fontWeight: "700",
+    textAlign: "center",
+    // fontFamily: "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;",
+  },
+  h2: {
+    fontSize: 28,
+    fontWeight: "700",
+    fontFamily: "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif",
+  },
+  h3: {
+    fontWeight: "600",
+    fontSize: 24,
+  },
+};
+
+export default { COLORS, FONTS };

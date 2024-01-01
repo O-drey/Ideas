@@ -6,7 +6,7 @@ export interface Ideas {
   title: string;
   subtitle?: string | null;
   content: string;
-  category: "frontend" | "backend" | "fullstack" | "design" | "photography";
-  by_userId: Users["id"];
+  tags: "frontend" | "backend" | "fullstack" | "design" | "photography";
+  author: Users["id"];
   // likes: Users["id"][];
 }

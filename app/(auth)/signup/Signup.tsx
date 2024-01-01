@@ -22,7 +22,7 @@ export default function Signup() {
   const handleSubmit = async () => {
     if (confirmPassword !== password)
       return setError("Les mots de passe ne correspondent pas.");
-    const { signup } = useAuth();
+    // const { signup } = useAuth();
 
     // const datas = useEffect(() => {
     //   //pas sure de l'utilisation du useEffect
@@ -63,7 +63,7 @@ export default function Signup() {
         placeholder="Nom de famille"
       />
       <Text>Email</Text>
-      <TextInput value={username} onChangeText={setEmail} placeholder="Email" />
+      <TextInput value={email} onChangeText={setEmail} placeholder="Email" />
       <Text>Nom utilisateur</Text>
       <TextInput
         value={username}

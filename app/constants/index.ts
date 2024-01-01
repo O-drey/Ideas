@@ -1,2 +1,2 @@
-import COLORS from "./theme";
-export { COLORS };
+import THEME from "./theme";
+export { THEME };

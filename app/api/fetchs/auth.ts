@@ -15,37 +15,48 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 // );
 
 export const useAuth = () => {
-  // const [token, setToken] = useState("");
-  // const login = async (username: string, password: string) => {
-  //   try {
-  //     const { data } = await httpClient.post("/login", null, {
-  //       headers: { Authorization: "Basic " + btoa(username + ":" + password) },
-  //     });
-  //     setToken(`Bearer ${data}`);
-  //     const token = await AsyncStorage.setItem("token", `Bearer ${data.token}`);
-  //     console.log(data, token);
-  //     return data;
-  //     console.log("connectée", username, password);
-  //   } catch (error) {
-  //     throw new Error((error as Error).message);
-  //   }
-  // };
+  const [token, setToken] = useState("");
+  const [error, setError] = useState<Error | null>(null);
+  const login = async (username: string, password: string) => {
+    try {
+      const { data } = await httpClient.post("/login", null, {
+        headers: { Authorization: "Basic " + btoa(username + ":" + password) },
+      });
+      setToken(`Bearer ${data}`);
+      const token = await AsyncStorage.setItem("token", `Bearer ${data.token}`);
+      console.log(data, token);
+      return data;
+    } catch (error) {
+      setError(error as Error);
+      throw new Error((error as Error).message);
+    }
+  };
 
   const signup = async (
     datas: Omit<Users, "id" | "role"> & { password: string }
   ) => {
-    const { data } = await httpClient.post("/users", datas);
-    return data;
+    try {
+      const { data } = await httpClient.post("/users", datas);
+      return data;
+    } catch (error) {
+      setError(error as Error);
+      throw new Error((error as Error).message);
+    }
   };
 
-  // const logout = async () => {
-  //   await AsyncStorage.removeItem("token");
-  //   httpClient.defaults.headers.delete.Authorization;
-  // };
+  const logout = async () => {
+    try {
+      await AsyncStorage.removeItem("token");
+      httpClient.defaults.headers.delete.Authorization;
+    } catch (error) {
+      setError(error as Error);
+      throw new Error((error as Error).message);
+    }
+  };
 
   return {
-    // login,
+    login,
     signup,
-    // logout
+    logout,
   };
 };

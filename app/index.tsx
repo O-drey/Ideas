@@ -1,34 +1,39 @@
 import { useState } from "react";
-import { View, Text, ScrollView, SafeAreaView } from "react-native";
+import { View, Text, ScrollView, SafeAreaView, FlatList } from "react-native";
 import { Stack, Tabs, useRouter } from "expo-router";
 import { ideas } from "../datas/ideas.json";
-import { COLORS } from "./constants";
+import { THEME } from "./constants";
 import { Cards } from "./components/Cards";
-import { fetchIdeas } from "./api/fetchs/fetchIdeas";
+// import { fetchIdeas } from "./api/fetchs/fetchIdeas";
 
-const Home = async () => {
-  const { fetchDatas } = fetchIdeas();
-  const { list } = await fetchDatas();
-  // const ideas = await list();
+// const { fetchDatas } = fetchIdeas();
+// const { list } = fetchDatas();
+// const ideas = await list();
+const Home = () => {
   const router = useRouter();
   return (
-    <SafeAreaView style={{}}>
+    <SafeAreaView>
       <Stack.Screen
         options={{
-          headerStyle: { backgroundColor: COLORS.primary200 },
+          headerStyle: { backgroundColor: THEME.COLORS.primary200 },
           headerShadowVisible: false,
           headerBackButtonMenuEnabled: true,
+          title: "Accueil",
         }}
       />
-      <Text>Les dernières idées</Text>
-      {ideas.map((idea, index) => (
-        <Cards
-          key={index}
-          title={idea.title}
-          content={idea.content}
-          tags={idea.tags}
-        />
-      ))}
+
+      <Text style={THEME.FONTS.h1}>Les dernières idées</Text>
+      <FlatList
+        data={ideas}
+        keyExtractor={(idea) => idea.title}
+        renderItem={(idea) => (
+          <Cards
+            title={idea.item.title}
+            content={idea.item.content}
+            tags={idea.item.tags}
+          />
+        )}
+      />
       <Tabs>
         <Tabs.Screen name="Home" />
         <Tabs.Screen name="Search" />
