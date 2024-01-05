@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { View, TextInput, Text, Button, StyleSheet, Alert } from "react-native";
 // import { useAuth } from "../../api/fetchs/auth";
 import { Link } from "expo-router";
-import { THEME } from "../../constants";
+import { THEME } from "../constants";
 // import {secondary_button} from "../../libs/ui/index"
 
 export default function Login() {

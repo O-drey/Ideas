@@ -1,14 +1,15 @@
 import { useState } from "react";
-import { View, Text, ScrollView, SafeAreaView, FlatList } from "react-native";
+import { Text, SafeAreaView, FlatList } from "react-native";
 import { Stack, Tabs, useRouter } from "expo-router";
 import { ideas } from "../datas/ideas.json";
 import { THEME } from "./constants";
 import { Cards } from "./components/Cards";
 // import { fetchIdeas } from "./api/fetchs/fetchIdeas";
 
+// const [ideas, setIdeas] = useState<Ideas[] | null>(null)
 // const { fetchDatas } = fetchIdeas();
 // const { list } = fetchDatas();
-// const ideas = await list();
+// setIdeas(await list());
 const Home = () => {
   const router = useRouter();
   return (
@@ -34,12 +35,6 @@ const Home = () => {
           />
         )}
       />
-      <Tabs>
-        <Tabs.Screen name="Home" />
-        <Tabs.Screen name="Search" />
-        <Tabs.Screen name="Idealizing" />
-        <Tabs.Screen name="Profile" />
-      </Tabs>
     </SafeAreaView>
   );
 };

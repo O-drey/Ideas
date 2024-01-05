@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { TextInput, Text, TouchableOpacity, View, Button } from "react-native";
 
-import { useAuth } from "../../api/fetchs/auth";
-import { Users } from "../../libs/interfaces/users";
+import { useAuth } from "../api/fetchs/auth";
+import { Users } from "../libs/interfaces/users";
 
 import { Feather } from "@expo/vector-icons";
 import { Link } from "expo-router";
