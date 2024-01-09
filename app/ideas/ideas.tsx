@@ -1,9 +1,9 @@
 import { SafeAreaView, Text, View, FlatList } from "react-native";
 // import { fetchIdeas } from "../api/fetchs/fetchIdeas";
-import { Cards } from "../components/Cards";
+import { Cards } from "../../components/Cards";
 import { ideas } from "../../datas/ideas.json";
 
-export default async function Ideas() {
+export default function Ideas() {
   // const { fetchDatas } = fetchIdeas();
   // const { list } = fetchDatas();
 
@@ -23,6 +23,7 @@ export default async function Ideas() {
             />
           )}
           keyExtractor={(idea) => idea.id}
+          debug={true}
         />
       </View>
     </SafeAreaView>

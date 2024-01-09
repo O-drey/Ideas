@@ -1,9 +1,9 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Text, SafeAreaView, FlatList } from "react-native";
-import { Stack, Tabs, useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { ideas } from "../datas/ideas.json";
-import { THEME } from "./constants";
-import { Cards } from "./components/Cards";
+import { THEME } from "../constants";
+import { Cards } from "../components/Cards";
 // import { fetchIdeas } from "./api/fetchs/fetchIdeas";
 
 // const [ideas, setIdeas] = useState<Ideas[] | null>(null)
@@ -32,8 +32,10 @@ const Home = () => {
             title={idea.item.title}
             content={idea.item.content}
             tags={idea.item.tags}
+            id={idea.item.id}
           />
         )}
+        debug={true}
       />
     </SafeAreaView>
   );

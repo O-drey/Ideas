@@ -1,16 +1,78 @@
 {
   "users": [
     {
-      "id": "",
-      "firstname": "",
-      "lastname": "",
+      "id": "a1bb3f37-8a82-4bfc-9a98-2a3859d2ef91",
+      "firstname": "Alice",
+      "lastname": "Dupont",
+      "pronouns": "elle",
+      "bio": "Développeuse passionnée par les nouvelles technologies.",
+      "email": "alice@email.com",
+      "username": "alice_dev",
+      "password": "motdepasse123",
+      "ideas": [
+        "66f01a05-8c4b-4e38-a6e9-8a0e2a735e29",
+        "c2d3d342-23e1-4b58-ba7c-60dcf4c09b21"
+      ],
+      "created_at": 1641600000,
+      "updated_at": null,
+      "deleted_at": null
+    },
+    {
+      "id": "c89cfd75-72ec-45fc-9d88-926d55f1b723",
+      "firstname": "Jean",
+      "lastname": "Martin",
+      "pronouns": "il",
+      "bio": "Ingénieur logiciel avec une passion pour l'open source.",
+      "email": "jean@email.com",
+      "username": "jean_dev",
+      "password": "securepassword456",
+      "ideas": [],
+      "created_at": 1641601000,
+      "updated_at": null,
+      "deleted_at": null
+    },
+    {
+      "id": "f2bd6e90-613c-4f43-b9e4-8a3aa1c4e579",
+      "firstname": "Camille",
+      "lastname": "Lefevre",
       "pronouns": "iel",
       "bio": "",
-      "email": "",
-      "username": "",
-      "password": "",
-      "ideas": ["", "", ""],
-      "created_at": 0,
+      "email": "camille@email.com",
+      "username": "cam_dev",
+      "password": "motdepasse789",
+      "ideas": ["7e1e7aa8-8b07-4bdc-a0e1-dfdbf9e4a721"],
+      "created_at": 1641602000,
+      "updated_at": null,
+      "deleted_at": null
+    },
+    {
+      "id": "8b4c505d-97df-45b5-9b3f-9c3b19e662d2",
+      "firstname": "Alexis",
+      "lastname": "Roussel",
+      "pronouns": "iel",
+      "bio": "En quête de connaissances et d'innovations.",
+      "email": "alexis@email.com",
+      "username": "alexis_dev",
+      "password": "secure123456",
+      "ideas": [
+        "f84119a2-3e5f-4a17-af34-6a15cfaa6b11",
+        "2d6c9a8c-c7f0-4e99-bc15-7a22efb57fb3"
+      ],
+      "created_at": 1641603000,
+      "updated_at": null,
+      "deleted_at": null
+    },
+    {
+      "id": "bd16f3a7-9baa-4b79-8a64-ecf321399f2f",
+      "firstname": "Mélanie",
+      "lastname": "Bertrand",
+      "pronouns": "elle",
+      "bio": "Passionnée par l'interface utilisateur et l'expérience utilisateur.",
+      "email": "melanie@email.com",
+      "username": "mel_dev",
+      "password": "mdp123abc",
+      "ideas": ["98f9361d-1864-4e48-a20a-656890bc9f44"],
+      "created_at": 1641604000,
       "updated_at": null,
       "deleted_at": null
     }

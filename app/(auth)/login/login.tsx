@@ -2,19 +2,25 @@ import { useEffect, useState } from "react";
 import { View, TextInput, Text, Button, StyleSheet, Alert } from "react-native";
 // import { useAuth } from "../../api/fetchs/auth";
 import { Link } from "expo-router";
-import { THEME } from "../constants";
+import { THEME } from "../../../constants";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 // import {secondary_button} from "../../libs/ui/index"
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState<string | null>("");
 
   // useEffect(() => {}, [username, password]);
   const handleLogin = async () => {
     // const { login } = useAuth();
     // const data = await login(username, password);
     // console.log("login data :", data);
-    console.log("connectée");
+    console.log("token is setting");
+    setToken("connectée");
+    console.log("token setted");
+    await AsyncStorage.setItem("token", `Bearer ${token}`);
+    console.log(`Bearer ${token}`);
     // return data;
   };
 

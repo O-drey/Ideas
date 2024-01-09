@@ -1,21 +1,58 @@
 import { Tabs } from "expo-router/tabs";
-// import { Stack } from "expo-router/stack";
+import { Feather } from "@expo/vector-icons";
+import LoginLayout from "./(auth)/login/layout";
+import { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Layout() {
-  return (
+  const [isLogged, setIsLogged] = useState(false);
+  const [token, setToken] = useState<string | null>("");
+
+  useEffect(() => {
+    const handleCheckLogged = async () => {
+      setToken(await AsyncStorage.getItem("token"));
+
+      if (!token) setIsLogged(false);
+      setIsLogged(true);
+      console.log("logged : ", isLogged);
+    };
+    handleCheckLogged();
+  }, [token]);
+  return !isLogged ? (
+    <LoginLayout />
+  ) : (
     <Tabs>
-      <Tabs.Screen name="Home" options={{ tabBarLabel: "Home", href: "/" }} />
       <Tabs.Screen
-        name="Search"
-        options={{ tabBarLabel: "Search", href: "/search" }}
+        name="index"
+        options={{
+          tabBarLabel: "Home",
+          href: "/",
+          tabBarIcon: () => <Feather name="home" size={24} />,
+        }}
       />
       <Tabs.Screen
-        name="Idealizing"
-        options={{ tabBarLabel: "Ideas", href: "/ideas" }}
+        name="search"
+        options={{
+          tabBarLabel: "Search",
+          href: "/search",
+          tabBarIcon: () => <Feather name="search" size={24} />,
+        }}
       />
       <Tabs.Screen
-        name="Profile"
-        options={{ tabBarLabel: "Profile", href: "/profile" }}
+        name="ideas"
+        options={{
+          tabBarLabel: "Ideas",
+          href: "/ideas",
+          tabBarIcon: () => <Feather name="zap" size={24} />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          tabBarLabel: "Profile",
+          href: "/profile",
+          tabBarIcon: () => <Feather name="user" size={24} />,
+        }}
       />
     </Tabs>
   );

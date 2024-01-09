@@ -37,4 +37,13 @@ const FONTS = {
   },
 };
 
-export default { COLORS, FONTS };
+const UI = {
+  inputs: {
+    borderWidth: 1,
+    paddingVertical: 2,
+    paddingHorizontal: 3,
+    borderRadius: 4,
+  },
+};
+
+export default { COLORS, FONTS, UI };
